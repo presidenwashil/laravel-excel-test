@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
+
+Route::get('students', [StudentController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('students');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
